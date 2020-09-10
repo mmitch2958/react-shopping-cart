@@ -12,8 +12,13 @@ function App() {
 	const [cart, setCart] = useState([]);
 
 	const addItem = item => {
-		// add the given item to the cart
+		setCart([...cart, item])
 	};
+
+	const deleteItem = id => {
+		const newCart = cart.filter(item => item.id !== id)
+		setCart([...newCart])
+	}
 
 	return (
 		<div className="App">
@@ -25,7 +30,7 @@ function App() {
 			</Route>
 
 			<Route path="/cart">
-				<ShoppingCart cart={cart} />
+				<ShoppingCart cart={cart} deleteItem={deleteItem} />
 			</Route>
 		</div>
 	);
